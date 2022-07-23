@@ -1,35 +1,63 @@
-<h1>Weather App!</h1>
-<p>Lets show some info!</p>
+<div class='app'>
+  <div class='search'>
+    <form action="city_search" method="get" accept-charset="UTF-8" >
+      <input id="query" name="query" type="text" />
+      <input name="commit" type="submit" value="Search" data-disable-with="Search" />
+    </form>
+  </div>
 
-<br/>
+  <div class='container'>
+    <div class='main'>
+      <div class='city'>
+        <p><%= @city %></p>
+      </div>
+      <div class='temp'>
+        <p><%= @temperature %>°C</p>
+      </div>
+       <div class='weather'>
+        <p><%= @weather %></p>
+      </div>
+       <div class='description'>
+        <p><%= @description %></p>
+      </div>
+    </div>
 
-<form action="city_search" method="get" accept-charset="UTF-8" >
-  <label for="query">Search for:</label>
-  <input id="query" name="query" type="text" />
-  <input name="commit" type="submit" value="Search" data-disable-with="Search" />
-</form>
+    <div class='secondary'>
+      <div class='temp_min'>
+        <p><%= @temp_min %>°C</p>
+        <p> Min Temp </p>
+      </div>
+       <div class='temp_max'>
+        <p><%= @temp_max %>°C</p>
+        <p> Max Temp </p>
+      </div>
+       <div class='sunrise'>
+        <p><%= @sunrise %> am</p>
+        <p> Sunrise </p>
+      </div>
+      <div class='sunset'>
+        <p><%= @sunset %> pm</p>
+        <p> Sunset </p>
+      </div>
+    </div>
 
-<br/>
-
-<%= @data %>
-
-<br/>
-
-<%= @city %>
-<%= @weather %>
-<%= @description %>
-
-<br/>
-
-<%= @temperature %>
-<%= @temp_min %>
-<%= @temp_max %>
-<%= @pressure %>
-<%= @humidity %>
-
-<br/>
-
-<%= @visibility %>
-<%= @wind_speed %>
-<%= @sunrise %>
-<%= @sunset %>
+    <div class='tertiary'>
+      <div class='wind_speed'>
+        <p><%= @wind_speed %> m/s</p>
+        <p> Wind Speed </p>
+      </div>
+      <div class='humidity'>
+        <p><%= @humidity %> %</p>
+        <p> Humidity </p>
+      </div>
+      <div class='pressure'>
+        <p><%= @pressure %> hPa</p>
+        <p> Pressure </p>
+      </div>
+      <div class='visibility'>
+        <p><%= @visibility %> m</p>
+        <p> Visibility </p>
+      </div>
+    </div>
+  </div>
+</div>
