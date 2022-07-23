@@ -13,9 +13,33 @@ class HomeController < ApplicationController
   private
 
   def pull_api_data_and_parse(city)
-    @url = "https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=80a15e8248942ae6b85511e693c86fc4"
-    @uri = URI(@url)
-    @response = Net::HTTP.get(@uri)
-    @data = JSON.parse(@response)
+    url = "https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=80a15e8248942ae6b85511e693c86fc4&units=metric"
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    data = JSON.parse(response)
+    split_data(data)
+  end
+
+  def split_data(data)
+    name(data)
+    weather(data)
+    main(data)
+  end
+
+  def name(data)
+    @city = data['name']
+  end
+
+  def weather(data)
+    @weather = data['weather'][0]['main']
+    @description = data['weather'][0]['description']
+  end
+
+  def main(data)
+    @temperature = data['main']['temp'].round
+    @temp_min = data['main']['temp_min'].round
+    @temp_max = data['main']['temp_max'].round
+    @pressure = data['main']['pressure'].round
+    @humidity = data['main']['humidity'].round
   end
 end
