@@ -25,6 +25,8 @@ class HomeController < ApplicationController
     name(data)
     weather(data)
     main(data)
+    sunrise_sunset(data)
+    minor(data)
   end
 
   def name(data)
@@ -42,5 +44,18 @@ class HomeController < ApplicationController
     @temp_max = data['main']['temp_max'].round
     @pressure = data['main']['pressure'].round
     @humidity = data['main']['humidity'].round
+  end
+
+  def sunrise_sunset(data)
+    sunrise = Time.at(data['sys']['sunrise']).utc + data['timezone'].seconds
+    sunset = Time.at(data['sys']['sunset']).utc + data['timezone'].seconds
+
+    @sunrise = sunrise.to_s(:time)
+    @sunset = sunset.to_s(:time)
+  end
+
+  def minor(data)
+    @visibility = data['visibility']
+    @wind_speed = data['wind']['speed'].round
   end
 end
