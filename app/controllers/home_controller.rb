@@ -13,7 +13,8 @@ class HomeController < ApplicationController
   private
 
   def pull_api_data_and_parse(city)
-    url = "https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=80a15e8248942ae6b85511e693c86fc4&units=metric"
+    api_key = ENV['WEATHER_API_KEY']
+    url = "https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric"
     uri = URI(url)
     response = Net::HTTP.get(uri)
     data = JSON.parse(response)
