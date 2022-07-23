@@ -1,9 +1,19 @@
 class HomeController < ApplicationController
-  def index
-    require 'net/http'
-    require 'json'
+  require 'net/http'
+  require 'json'
 
-    @url = 'https://api.openweathermap.org/data/2.5/weather?q=london&appid=80a15e8248942ae6b85511e693c86fc4'
+  def index; end
+
+  def search
+    city = params[:query]
+    pull_api_data_and_parse(city)
+    render :index
+  end
+
+  private
+
+  def pull_api_data_and_parse(city)
+    @url = "https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=80a15e8248942ae6b85511e693c86fc4"
     @uri = URI(@url)
     @response = Net::HTTP.get(@uri)
     @data = JSON.parse(@response)
