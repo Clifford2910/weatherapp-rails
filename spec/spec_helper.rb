@@ -13,6 +13,60 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'webmock/rspec'
+WebMock.disable_net_connect!(allow_localhost: true)
+
+RSpec.configure do |config|
+  config.before(:each) do
+    weather_response = {
+      "coord": {
+          "lon": -0.1257,
+          "lat": 51.5085
+      },
+      "weather": [
+          {
+              "id": 801,
+              "main": "Clouds",
+              "description": "few clouds",
+              "icon": "02d"
+          }
+      ],
+      "base": "stations",
+      "main": {
+          "temp": 26.76,
+          "feels_like": 26.74,
+          "temp_min": 24.36,
+          "temp_max": 28.75,
+          "pressure": 1011,
+          "humidity": 41
+      },
+      "visibility": 10000,
+      "wind": {
+          "speed": 7.72,
+          "deg": 220
+      },
+      "clouds": {
+          "all": 13
+      },
+      "dt": 1658681114,
+      "sys": {
+          "type": 2,
+          "id": 268730,
+          "country": "GB",
+          "sunrise": 1658635935,
+          "sunset": 1658692886
+      },
+      "timezone": 3600,
+      "id": 2643743,
+      "name": "London",
+      "cod": 200
+    }
+    api_key = 1
+    stub_request(:get, "https://api.openweathermap.org/data/2.5/weather?q=london&appid=#{api_key}&units=metric")
+      .to_return(status: 200, body: weather_response.to_json)
+  end
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
