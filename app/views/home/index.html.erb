@@ -1,9 +1,14 @@
 <div class='app'>
   <div class='search'>
-    <form action="city_search" method="get" accept-charset="UTF-8" >
-      <input id="query" name="query" type="text" placeholder='Enter Location' required='required' />
+    <form action='city_search' method='get' accept-charset='UTF-8' >
+      <input id='query' name='query' type='text' placeholder='Enter Location' />
     </form>
   </div>
+  <% if flash[:alert] %>
+    <div id="alert" class='alert'>
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
 
   <div class='container'>
     <div class='main'>

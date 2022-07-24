@@ -18,7 +18,15 @@ class HomeController < ApplicationController
     uri = URI(url)
     response = Net::HTTP.get(uri)
     data = JSON.parse(response)
-    split_data(data)
+    handle_errors(data)
+  end
+
+  def handle_errors(data)
+    if data['id']
+      split_data(data)
+    else
+      flash.now[:alert] = 'Could not find location, please check spelling and try again.'
+    end
   end
 
   def split_data(data)
