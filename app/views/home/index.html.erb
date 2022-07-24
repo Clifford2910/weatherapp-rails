@@ -1,4 +1,12 @@
 <div class='app'>
+  <div class='button_container'>
+    <% if cookies[:dark_mode] %>
+      <%= button_to 'Light Mode', light_mode_path, method: :get, class: 'button' %>
+    <% else %>
+      <%= button_to 'Dark Mode', dark_mode_path, method: :get, class: 'button'%>
+    <% end %>
+  </div>
+
   <div class='search'>
     <form action='city_search' method='get' accept-charset='UTF-8' >
       <input id='query' name='query' type='text' placeholder='Enter Location' />
