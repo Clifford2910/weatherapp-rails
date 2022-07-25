@@ -35,6 +35,7 @@ class HomeController < ApplicationController
     main(data)
     sunrise_sunset(data)
     minor(data)
+    time_at_location(data)
   end
 
   def name(data)
@@ -65,5 +66,10 @@ class HomeController < ApplicationController
   def minor(data)
     @visibility = data['visibility']
     @wind_speed = data['wind']['speed'].round
+  end
+
+  def time_at_location(data)
+    time_at_location = Time.now.utc + data['timezone'].seconds if data['timezone'].seconds
+    @time_at_location = time_at_location.to_s(:time)
   end
 end
