@@ -59,6 +59,16 @@ $ bundle exec rspec spec/api_spec.rb:3
 <img src="app.png" />
 
 
+## Image of App - web - dark mode
+
+<img src="app_dark.png" />
+
+
 ## Image of App - mobile
 
 <img src="app_mobile.png" />
+
+
+## Image of App - mobile - dark mode
+
+<img src="app_mobile_dark.png" />
