@@ -14,13 +14,13 @@ clearly and visually.
 
 ## Challenge
 
-* Required
+Required
 - Build and host a web application that uses the OpenWeatherMap API (sign up to access the API) to retrieve and display current weather information for a user-entered location.
 - The information shown must include: current weather, temperature, sunrise and sunset times.
 - The application must be resilient and user-communicative regarding errors.
 - Ensure that the application meets basic accessibility criteria, and uses good semantic HTML.
 
-* Stretch
+Stretch
 - Display the remaining information from the API call: visibility, wind, humidity, etc.
 - Provide some personalisation settings. Preferred units (°C/°F), for example.
 - Store and recall these settings from local storage, as well as the user’s recently entered locations.
@@ -54,6 +54,11 @@ $ bundle exec rspec spec/api_spec.rb:3
 ```
 
 
-## Image of App
+## Image of App - web
 
 <img src="app.png" />
+
+
+## Image of App - mobile
+
+<img src="app_mobile.png" />
