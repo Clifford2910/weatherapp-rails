@@ -5,16 +5,16 @@ class HomeController < ApplicationController
   def index; end
 
   def search
-    city = params[:query]
-    pull_api_data_and_parse(city)
+    location = params[:query]
+    pull_api_data_and_parse(location)
     render :index
   end
 
   private
 
-  def pull_api_data_and_parse(city)
+  def pull_api_data_and_parse(location)
     api_key = ENV['WEATHER_API_KEY']
-    url = "https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric"
+    url = "https://api.openweathermap.org/data/2.5/weather?q=#{location}&appid=#{api_key}&units=metric"
     uri = URI(url)
     response = Net::HTTP.get(uri)
     data = JSON.parse(response)
